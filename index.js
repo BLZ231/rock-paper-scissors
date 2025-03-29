@@ -2,21 +2,40 @@ console.log("Hello World")
 
 console.log("Testing One Two")
 
-/*
-New function getComputerChoice
-Have this function return 1 of 3 string values
-rock, paper, or scissors
-Have rock equal 1
-Have paper equal 2
-Have scissors equal 3
-Have the function return 1, 2, or 3, no other numbers
+function getComputerChoice() {
+    const choices = ["Rock", "Paper", "Scissors"];
+    const randomIndex = Math.floor
+    (Math.random()*choices.length);
+    return choices [randomIndex];
+}
 
-New function getHumanChoice
-Use prompt to get the user's input
-Make input case insensitive
-Rock
-Paper
-Scissors
+function getHumanChoice() {
+    let choice = prompt
+    ("Select your move (Rock, Paper, or Scissors):");
+    choice = choice.toLowerCase();
+    const validChoices = 
+    ["rock", "paper", "scissors"];
+
+    if (validChoices.includes(choice)) {
+    return choice.charAt(0).toUpperCase()+choice.slice(1);
+    }
+    else {
+        alert("Invalid. Please try again.");
+        return getHumanChoice();
+        /*
+        fascinating
+        so you can put the function inside itself
+        that sounds useful
+        though also potentially confusing
+        */
+    }
+}
+
+console.log(getHumanChoice())
+
+/*
+
+
 
 Variables
 humanScore and computerScore
