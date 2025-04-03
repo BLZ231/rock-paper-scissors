@@ -5,7 +5,7 @@ console.log("Testing One Two")
 
 
 let humanScore = 0;
-let ComputerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     const choices = ["Rock", "Paper", "Scissors"];
@@ -48,25 +48,25 @@ function playRound () {
         /*Draw*/
     }
     else if (
-    (humanChoice === "rock" && 
-        computerChoice === "paper")
-    || (humanChoice === "paper" && 
-        computerChoice === "scissors" )
-    || (humanChoice === "scissors" &&
-        computerChoice === "rock"
+    (humanChoice === "Rock" && 
+        computerChoice === "Paper") ||
+     (humanChoice === "Paper" && 
+        computerChoice === "Scissors" ) ||
+     (humanChoice === "Scissors" &&
+        computerChoice === "Rock"
     )){
-    result="B"
+    result="B";
     /*Loss*/
     }
-    else if (
-    (humanChoice === "rock" &&
-        computerChoice === "scissors")
-    || (humanChoice === "paper" &&
-        computerChoice === "rock")
-    || (humanChoice === "scissors" &&
-        computerChoice === "paper"
+    if (
+    (humanChoice === "Rock" &&
+        computerChoice === "Scissors") ||
+     (humanChoice === "Paper" &&
+        computerChoice === "Rock") ||
+    (humanChoice === "Scissors" &&
+        computerChoice === "Paper"
     )){
-    result="C"
+    result="C";
     /*Win*/
     }
 
@@ -85,10 +85,27 @@ function playRound () {
     
 
 
-console.log (`Current Score - You: ${humanScore},
+console.log (`Current Score
+    You: ${humanScore}
     Computer: ${computerScore}`);
 
     return result;
+}
+
+function playGame () {
+    let playAgain = true;
+
+    while (playAgain) {
+        playRound();
+        playAgain = confirm("Play again?")
+    }
+
+    console.log("Bye")
+}
+
+window.onload = function() {
+
+    playGame();
 }
 
 /*
