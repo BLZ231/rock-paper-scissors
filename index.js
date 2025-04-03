@@ -2,36 +2,94 @@ console.log("Hello World")
 
 console.log("Testing One Two")
 
+
+
+let humanScore = 0;
+let ComputerScore = 0;
+
 function getComputerChoice() {
     const choices = ["Rock", "Paper", "Scissors"];
     const randomIndex = Math.floor
     (Math.random()*choices.length);
     return choices [randomIndex];
-}
-
+    }
+    
 function getHumanChoice() {
     let choice = prompt
     ("Select your move (Rock, Paper, or Scissors):");
     choice = choice.toLowerCase();
     const validChoices = 
     ["rock", "paper", "scissors"];
-
+    
     if (validChoices.includes(choice)) {
     return choice.charAt(0).toUpperCase()+choice.slice(1);
     }
     else {
-        alert("Invalid. Please try again.");
-        return getHumanChoice();
-        /*
-        fascinating
-        so you can put the function inside itself
-        that sounds useful
-        though also potentially confusing
-        */
+    alert("Invalid. Please try again.");
+    return getHumanChoice();
+    /*
+    fascinating
+    so you can put the function inside itself
+    that sounds useful
+    though also potentially confusing
+    */
     }
-}
+    }
+    
+function playRound () {
 
-console.log(getHumanChoice())
+    const humanChoice = getHumanChoice();
+    const computerChoice = getComputerChoice();
+
+    let result;
+
+    if (humanChoice === computerChoice) {
+        result="A";
+        /*Draw*/
+    }
+    else if (
+    (humanChoice === "rock" && 
+        computerChoice === "paper")
+    || (humanChoice === "paper" && 
+        computerChoice === "scissors" )
+    || (humanChoice === "scissors" &&
+        computerChoice === "rock"
+    )){
+    result="B"
+    /*Loss*/
+    }
+    else if (
+    (humanChoice === "rock" &&
+        computerChoice === "scissors")
+    || (humanChoice === "paper" &&
+        computerChoice === "rock")
+    || (humanChoice === "scissors" &&
+        computerChoice === "paper"
+    )){
+    result="C"
+    /*Win*/
+    }
+
+    if (result === "A") {
+        console.log ("Draw.");
+    }
+    else if (result === "B"){
+        console.log ("You lose.");
+        computerScore +=1;
+    }
+    else if (result === "C"){
+        console.log ("You win.")
+        humanScore +=1;
+    }
+    
+    
+
+
+console.log (`Current Score - You: ${humanScore},
+    Computer: ${computerScore}`);
+
+    return result;
+}
 
 /*
 
