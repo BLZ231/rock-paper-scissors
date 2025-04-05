@@ -36,6 +36,11 @@ function getHumanChoice() {
     }
     }
     
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+}
+
 function playRound () {
 
     const humanChoice = getHumanChoice();
@@ -81,7 +86,14 @@ function playRound () {
         console.log ("You win.")
         humanScore +=1;
     }
-    
+   
+    if (humanScore === 5) {
+        console.log ("Congratulations, you won.");
+        resetGame();
+    } else if (computerScore === 5) {
+        console.log ("Sorry, you lost.")
+        resetGame();
+    }
     
 
 
@@ -90,6 +102,8 @@ console.log (`Current Score
     Computer: ${computerScore}`);
 
     return result;
+
+ 
 }
 
 function playGame () {
@@ -108,51 +122,6 @@ window.onload = function() {
     playGame();
 }
 
-/*
-
-
-
-Variables
-humanScore and computerScore
-Have them both start at 0
-
-function playRound
-takes humanChoice and computerChoice into account
-If hC is Rock and cC is Rock, return string A
-If hC is Rock and cC is Paper, return string B
-If hC is Rock and cC is Scissors, return string C
-If hC is Paper and cC is Rock, return string c
-If hC is Paper and cC is Paper, return string A
-If hC is Paper and cC is Scissors, return string B
-If hC is Scissors and cC is Rock, return string B
-If hC is Scissors and cC is Paper, return string C
-If hC is Scissors and cC is Scissors, return string A
-
-
-String A
-Draw.
-Neither score changes
-
-String B
-You lose.
-computerScore goes up by 1
-
-String C
-You win.
-humanScore goes up by 1
-
-function playGame
-Summons playRound function, I guess
-if computerScore equals 5, return string D
-if humanScore equals 5, return string E
-
-String D
-Sorry, you lost.
-
-String E
-Congratulations, you won.
-
-*/
 
 
 
