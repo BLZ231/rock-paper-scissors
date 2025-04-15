@@ -27,12 +27,7 @@ function getHumanChoice() {
     else {
     alert("Invalid. Please try again.");
     return getHumanChoice();
-    /*
-    fascinating
-    so you can put the function inside itself
-    that sounds useful
-    though also potentially confusing
-    */
+  
     }
     }
     
@@ -122,7 +117,9 @@ window.onload = function() {
     playGame();
 }
 
-
+  /*
+    testing new branch visibility
+    */
 
 
 
