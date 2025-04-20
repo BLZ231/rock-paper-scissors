@@ -13,38 +13,43 @@ function getComputerChoice() {
     (Math.random()*choices.length);
     return choices [randomIndex];
     }
+
+let humanChoice = "";
+
+function getHumanChoice(choice) {
     
-function getHumanChoice() {
-    let choice = prompt
-    ("Select your move (Rock, Paper, or Scissors):");
-    choice = choice.toLowerCase();
-    const validChoices = 
-    ["rock", "paper", "scissors"];
-    
-    if (validChoices.includes(choice)) {
-    return choice.charAt(0).toUpperCase()+choice.slice(1);
-    }
-    else {
-    alert("Invalid. Please try again.");
-    return getHumanChoice();
+    const validChoices = ["Rock", "Paper", "Scissors"];
   
-    }
-    }
-    
-function resetGame() {
-    humanScore = 0;
-    computerScore = 0;
+    if (validChoices.includes(choice)) {
+    humanChoice = choice
+    document.getElementById("result").textContent=`You chose: ${humanChoice}`;
+    return humanChoice;
+  }
+
 }
 
-function playRound () {
+document.getElementById("b1").addEventListener("click", function() {
+  playRound("Rock");
+});
 
-    const humanChoice = getHumanChoice();
+document.getElementById("b2").addEventListener("click", function() {
+  playRound("Paper");
+});
+
+document.getElementById("b3").addEventListener("click", function() {
+  playRound("Scissors");
+});
+
+
+function playRound (humanChoice) {
+
+    // const humanChoice = getHumanChoice();
     const computerChoice = getComputerChoice();
 
-    let result;
+    let result = "";
 
     if (humanChoice === computerChoice) {
-        result="A";
+        result="Draw.";
         /*Draw*/
     }
     else if (
@@ -55,7 +60,8 @@ function playRound () {
      (humanChoice === "Scissors" &&
         computerChoice === "Rock"
     )){
-    result="B";
+    result="You lose.";
+    computerScore++;
     /*Loss*/
     }
     if (
@@ -66,32 +72,47 @@ function playRound () {
     (humanChoice === "Scissors" &&
         computerChoice === "Paper"
     )){
-    result="C";
+    result="You win.";
+    humanScore++;
     /*Win*/
     }
+    else {
+        result = "I am Error. Not sure how this happened."
+    }
 
-    if (result === "A") {
-        console.log ("Draw.");
-    }
-    else if (result === "B"){
-        console.log ("You lose.");
-        computerScore +=1;
-    }
-    else if (result === "C"){
-        console.log ("You win.")
-        humanScore +=1;
-    }
+    document.getElementById("humanScore").textContent=humanScore;
+    document.getElementById("computerScore").textContent=computerScore;
    
+    document.getElementById("result").textContent+=`Skynet chose: ${computerChoice}. ${result}`;
+
     if (humanScore === 5) {
-        console.log ("Congratulations, you won.");
+        document.getElementById("result").textContent+=" Congratulations, you won.";
         resetGame();
     } else if (computerScore === 5) {
-        console.log ("Sorry, you lost.")
+        document.getElementById("result").textContent+=" Sorry, you lost."
         resetGame();
     }
     
+}
+
+function resetGame() {
+    const playAgain = confirm("Play again?")
+
+    if (playAgain) {
+        humanScore = 0;
+        computerScore = 0;
+        document.getElementById("humanScore").textContent = humanScore;
+        document.getElementById("computerScore").textContent = computerScore;
+        document.getElementById("result").textContent = "";
+    } else {
+        document.getElementById("result").textContent+="Bye.";
+    }
+   
+}
 
 
+
+/*
 console.log (`Current Score
     You: ${humanScore}
     Computer: ${computerScore}`);
@@ -119,6 +140,22 @@ window.onload = function() {
 
   /*
     testing new branch visibility
+
+    function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+}
+        if (result === "A") {
+        console.log ("Draw.");
+    }
+    else if (result === "B"){
+        console.log ("You lose.");
+        computerScore +=1;
+    }
+    else if (result === "C"){
+        console.log ("You win.")
+        humanScore +=1;
+    }
     */
 
 
