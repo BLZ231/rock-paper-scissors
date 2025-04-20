@@ -64,7 +64,7 @@ function playRound (humanChoice) {
     computerScore++;
     /*Loss*/
     }
-    if (
+    else if (
     (humanChoice === "Rock" &&
         computerChoice === "Scissors") ||
      (humanChoice === "Paper" &&
@@ -83,13 +83,13 @@ function playRound (humanChoice) {
     document.getElementById("humanScore").textContent=humanScore;
     document.getElementById("computerScore").textContent=computerScore;
    
-    document.getElementById("result").textContent+=`Skynet chose: ${computerChoice}. ${result}`;
+    document.getElementById("result").textContent=`Skynet chose: ${computerChoice}. ${result}`;
 
     if (humanScore === 5) {
-        document.getElementById("result").textContent+=" Congratulations, you won.";
+        document.getElementById("result").textContent=" Congratulations, you won.";
         resetGame();
     } else if (computerScore === 5) {
-        document.getElementById("result").textContent+=" Sorry, you lost."
+        document.getElementById("result").textContent=" Sorry, you lost."
         resetGame();
     }
     
@@ -105,7 +105,7 @@ function resetGame() {
         document.getElementById("computerScore").textContent = computerScore;
         document.getElementById("result").textContent = "";
     } else {
-        document.getElementById("result").textContent+="Bye.";
+        document.getElementById("result").textContent="Bye.";
     }
    
 }
