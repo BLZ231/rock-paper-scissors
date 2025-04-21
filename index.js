@@ -43,16 +43,13 @@ document.getElementById("b3").addEventListener("click", function() {
 
 function playRound (humanChoice) {
 
-    // const humanChoice = getHumanChoice();
     const computerChoice = getComputerChoice();
 
     let result = "";
 
     if (humanChoice === computerChoice) {
         result="Draw.";
-        /*Draw*/
-    }
-    else if (
+    } else if (
     (humanChoice === "Rock" && 
         computerChoice === "Paper") ||
      (humanChoice === "Paper" && 
@@ -62,9 +59,7 @@ function playRound (humanChoice) {
     )){
     result="You lose.";
     computerScore++;
-    /*Loss*/
-    }
-    else if (
+    } else if (
     (humanChoice === "Rock" &&
         computerChoice === "Scissors") ||
      (humanChoice === "Paper" &&
@@ -74,9 +69,7 @@ function playRound (humanChoice) {
     )){
     result="You win.";
     humanScore++;
-    /*Win*/
-    }
-    else {
+    } else {
         result = "I am Error. Not sure how this happened."
     }
 
@@ -85,18 +78,23 @@ function playRound (humanChoice) {
    
     document.getElementById("result").textContent=`Skynet chose: ${computerChoice}. ${result}`;
 
-    if (humanScore === 5) {
-        document.getElementById("result").textContent=" Congratulations, you won.";
-        resetGame();
-    } else if (computerScore === 5) {
-        document.getElementById("result").textContent=" Sorry, you lost."
+
+
+    if (humanScore === 5 || computerScore === 5) {
         resetGame();
     }
-    
 }
 
 function resetGame() {
-    const playAgain = confirm("Play again?")
+    
+    let finalPrompt = "";
+if (humanScore === 5) {
+    finalPrompt=" Congratulations, you won.";
+} else if (computerScore === 5) {
+    finalPrompt=" Sorry, you lost."
+}
+    
+    const playAgain = confirm(finalPrompt+" Play again?")
 
     if (playAgain) {
         humanScore = 0;
@@ -113,49 +111,7 @@ function resetGame() {
 
 
 /*
-console.log (`Current Score
-    You: ${humanScore}
-    Computer: ${computerScore}`);
-
-    return result;
-
- 
-}
-
-function playGame () {
-    let playAgain = true;
-
-    while (playAgain) {
-        playRound();
-        playAgain = confirm("Play again?")
-    }
-
-    console.log("Bye")
-}
-
-window.onload = function() {
-
-    playGame();
-}
-
-  /*
-    testing new branch visibility
-
-    function resetGame() {
-    humanScore = 0;
-    computerScore = 0;
-}
-        if (result === "A") {
-        console.log ("Draw.");
-    }
-    else if (result === "B"){
-        console.log ("You lose.");
-        computerScore +=1;
-    }
-    else if (result === "C"){
-        console.log ("You win.")
-        humanScore +=1;
-    }
+Guess I can go ahead and remove the stuff that was here.
     */
 
 
